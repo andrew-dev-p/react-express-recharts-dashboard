@@ -4,10 +4,24 @@ import { useState } from "react";
 import PixIcon from "@mui/icons-material/Pix";
 import { Link } from "react-router-dom";
 
+const navbarLinks = [
+  {
+    label: "Dashboard",
+    value: "dashboard",
+    route: "/",
+  },
+  {
+    label: "Predictions",
+    value: "predictions",
+    route: "/predictions",
+  },
+];
+
 const Navbar = () => {
   const { palette } = useTheme();
 
-  const [selected, setSelected] = useState<"dashboard" | "predictions">();
+  const [selected, setSelected] =
+    useState<(typeof navbarLinks)[number]["value"]>();
 
   return (
     <FlexBetween mb="0.25rem" p="0.5rem 0rem" color={palette.grey[300]}>
@@ -18,16 +32,20 @@ const Navbar = () => {
         </Typography>
       </FlexBetween>
       <FlexBetween gap="2rem">
-        <Box sx={{ "&:hover": { color: palette.primary[100] } }}>
-          <Link
-            to="/"
-            onClick={() => setSelected("dashboard")}
-            style={{
-              color: selected === "dashboard" ? "inherit" : palette.grey[700],
-              textDecoration: "inherit",
-            }}
-          ></Link>
-        </Box>
+        {navbarLinks.map((link) => (
+          <Box sx={{ "&:hover": { color: palette.primary[100] } }}>
+            <Link
+              to={link.route}
+              onClick={() => setSelected(link.value)}
+              style={{
+                color: selected === link.value ? "inherit" : palette.grey[700],
+                textDecoration: "inherit",
+              }}
+            >
+              {link.label}
+            </Link>
+          </Box>
+        ))}
       </FlexBetween>
     </FlexBetween>
   );
