@@ -1,12 +1,17 @@
 import DashboardBox from "@/components/DashboardBox";
 import { Box, useMediaQuery } from "@mui/material";
-import { useGetKpisQuery, useGetProductsQuery } from "@/state/api";
+import {
+  useGetKpisQuery,
+  useGetProductsQuery,
+  useGetTransactionsQuery,
+} from "@/state/api";
 import RevenueExpensesChart from "@/components/charts/RevenueExpensesChart";
 import ProfitRevenueChart from "@/components/charts/ProfitRevenueChart";
 import RevenueByMonthChart from "@/components/charts/RevenueByMonthChart";
 import OperationalExpensesChart from "@/components/charts/OperationalExpensesChart";
 import CampaignsTargetsChart from "@/components/charts/CampaignsTargetsChart";
 import PricesExpensesChart from "@/components/charts/PricesExpensesChart";
+import ProductsList from "@/components/charts/ProductsList";
 
 const gridTemplateLg = `
   "a b c"
@@ -57,6 +62,7 @@ const gridTemplateSm = `
 const Dashboard = () => {
   const { data: kpisData } = useGetKpisQuery();
   const { data: productsData } = useGetProductsQuery();
+  const { data: transactionsData } = useGetTransactionsQuery();
 
   const isLgScreen = useMediaQuery("(min-width: 1200px)");
 
@@ -98,7 +104,9 @@ const Dashboard = () => {
       <DashboardBox gridArea="f">
         <PricesExpensesChart data={productsData} />
       </DashboardBox>
-      <DashboardBox gridArea="g"></DashboardBox>
+      <DashboardBox gridArea="g">
+        <ProductsList data={productsData} />
+      </DashboardBox>
       <DashboardBox gridArea="h"></DashboardBox>
       <DashboardBox gridArea="i"></DashboardBox>
       <DashboardBox gridArea="j"></DashboardBox>

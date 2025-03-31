@@ -14,7 +14,6 @@ import { useMemo } from "react";
 import { GetProductsResponse } from "@/state/types";
 
 const PricesExpensesChart = ({ data }: { data?: GetProductsResponse[] }) => {
-  console.log("🚀 ~ PricesExpensesChart ~ data:", data);
   const { palette } = useTheme();
 
   const productExpenseData = useMemo(() => {
@@ -29,10 +28,6 @@ const PricesExpensesChart = ({ data }: { data?: GetProductsResponse[] }) => {
       })
     );
   }, [data]);
-  console.log(
-    "🚀 ~ productExpenseData ~ productExpenseData:",
-    productExpenseData
-  );
 
   return (
     <>
