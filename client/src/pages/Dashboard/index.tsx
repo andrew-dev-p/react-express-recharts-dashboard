@@ -5,6 +5,7 @@ import RevenueExpensesChart from "@/components/charts/RevenueExpensesChart";
 import ProfitRevenueChart from "@/components/charts/ProfitRevenueChart";
 import RevenueByMonthChart from "@/components/charts/RevenueByMonthChart";
 import OperationalExpensesChart from "@/components/charts/OperationalExpensesChart";
+import CampaignsTargetsChart from "@/components/charts/CampaignsTargetsChart";
 
 const gridTemplateLg = `
   "a b c"
@@ -89,7 +90,9 @@ const Dashboard = () => {
       <DashboardBox gridArea="d">
         <OperationalExpensesChart data={data} />
       </DashboardBox>
-      <DashboardBox gridArea="e"></DashboardBox>
+      <DashboardBox gridArea="e">
+        <CampaignsTargetsChart />
+      </DashboardBox>
       <DashboardBox gridArea="f"></DashboardBox>
       <DashboardBox gridArea="g"></DashboardBox>
       <DashboardBox gridArea="h"></DashboardBox>
