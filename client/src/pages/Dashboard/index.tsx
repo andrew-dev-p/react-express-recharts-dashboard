@@ -1,11 +1,12 @@
 import DashboardBox from "@/components/DashboardBox";
 import { Box, useMediaQuery } from "@mui/material";
-import { useGetKpisQuery } from "@/state/api";
+import { useGetKpisQuery, useGetProductsQuery } from "@/state/api";
 import RevenueExpensesChart from "@/components/charts/RevenueExpensesChart";
 import ProfitRevenueChart from "@/components/charts/ProfitRevenueChart";
 import RevenueByMonthChart from "@/components/charts/RevenueByMonthChart";
 import OperationalExpensesChart from "@/components/charts/OperationalExpensesChart";
 import CampaignsTargetsChart from "@/components/charts/CampaignsTargetsChart";
+import PricesExpensesChart from "@/components/charts/PricesExpensesChart";
 
 const gridTemplateLg = `
   "a b c"
@@ -54,7 +55,8 @@ const gridTemplateSm = `
 `;
 
 const Dashboard = () => {
-  const { data } = useGetKpisQuery();
+  const { data: kpisData } = useGetKpisQuery();
+  const { data: productsData } = useGetProductsQuery();
 
   const isLgScreen = useMediaQuery("(min-width: 1200px)");
 
@@ -79,21 +81,23 @@ const Dashboard = () => {
       }
     >
       <DashboardBox gridArea="a">
-        <RevenueExpensesChart data={data} />
+        <RevenueExpensesChart data={kpisData} />
       </DashboardBox>
       <DashboardBox gridArea="b">
-        <ProfitRevenueChart data={data} />
+        <ProfitRevenueChart data={kpisData} />
       </DashboardBox>
       <DashboardBox gridArea="c">
-        <RevenueByMonthChart data={data} />
+        <RevenueByMonthChart data={kpisData} />
       </DashboardBox>
       <DashboardBox gridArea="d">
-        <OperationalExpensesChart data={data} />
+        <OperationalExpensesChart data={kpisData} />
       </DashboardBox>
       <DashboardBox gridArea="e">
         <CampaignsTargetsChart />
       </DashboardBox>
-      <DashboardBox gridArea="f"></DashboardBox>
+      <DashboardBox gridArea="f">
+        <PricesExpensesChart data={productsData} />
+      </DashboardBox>
       <DashboardBox gridArea="g"></DashboardBox>
       <DashboardBox gridArea="h"></DashboardBox>
       <DashboardBox gridArea="i"></DashboardBox>
