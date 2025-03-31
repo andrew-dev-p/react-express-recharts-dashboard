@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/kpi", kpiRoutes);
-app.use("/products", productRoutes);
+app.use("/product", productRoutes);
 
 const PORT = process.env.PORT || 9000;
 

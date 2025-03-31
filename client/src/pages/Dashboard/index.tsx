@@ -1,9 +1,10 @@
 import DashboardBox from "@/components/DashboardBox";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { useGetKpisQuery } from "@/state/api";
 import RevenueExpensesChart from "@/components/charts/RevenueExpensesChart";
 import ProfitRevenueChart from "@/components/charts/ProfitRevenueChart";
 import RevenueByMonthChart from "@/components/charts/RevenueByMonthChart";
+import OperationalExpensesChart from "@/components/charts/OperationalExpensesChart";
 
 const gridTemplateLg = `
   "a b c"
@@ -85,7 +86,9 @@ const Dashboard = () => {
       <DashboardBox gridArea="c">
         <RevenueByMonthChart data={data} />
       </DashboardBox>
-      <DashboardBox gridArea="d"></DashboardBox>
+      <DashboardBox gridArea="d">
+        <OperationalExpensesChart data={data} />
+      </DashboardBox>
       <DashboardBox gridArea="e"></DashboardBox>
       <DashboardBox gridArea="f"></DashboardBox>
       <DashboardBox gridArea="g"></DashboardBox>
