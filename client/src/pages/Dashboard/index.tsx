@@ -1,6 +1,9 @@
 import DashboardBox from "@/components/DashboardBox";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useGetKpisQuery } from "@/state/api";
+import RevenueExpensesChart from "@/components/charts/RevenueExpensesChart";
+import ProfitRevenueChart from "@/components/charts/ProfitRevenueChart";
+import RevenueByMonthChart from "@/components/charts/RevenueByMonthChart";
 
 const gridTemplateLg = `
   "a b c"
@@ -49,11 +52,9 @@ const gridTemplateSm = `
 `;
 
 const Dashboard = () => {
-  const isLgScreen = useMediaQuery("(min-width: 1200px)");
-  const { palette } = useTheme();
-
   const { data } = useGetKpisQuery();
-  console.log("🚀 ~ Dashboard ~ data:", data);
+
+  const isLgScreen = useMediaQuery("(min-width: 1200px)");
 
   return (
     <Box
@@ -75,9 +76,15 @@ const Dashboard = () => {
             }
       }
     >
-      <DashboardBox gridArea="a"></DashboardBox>
-      <DashboardBox gridArea="b"></DashboardBox>
-      <DashboardBox gridArea="c"></DashboardBox>
+      <DashboardBox gridArea="a">
+        <RevenueExpensesChart data={data} />
+      </DashboardBox>
+      <DashboardBox gridArea="b">
+        <ProfitRevenueChart data={data} />
+      </DashboardBox>
+      <DashboardBox gridArea="c">
+        <RevenueByMonthChart data={data} />
+      </DashboardBox>
       <DashboardBox gridArea="d"></DashboardBox>
       <DashboardBox gridArea="e"></DashboardBox>
       <DashboardBox gridArea="f"></DashboardBox>
