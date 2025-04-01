@@ -1,9 +1,9 @@
-import { GetProductsResponse } from "@/state/types";
+import { Box, useTheme } from "@mui/material";
 import { DataGrid, GridCellParams } from "@mui/x-data-grid";
 import BoxHeader from "./BoxHeader";
-import { Box, useTheme } from "@mui/material";
+import { GetTransactionsResponse } from "@/state/types";
 
-const ProductsList = ({ data }: { data?: GetProductsResponse[] }) => {
+const RecentOrders = ({ data }: { data?: GetTransactionsResponse[] }) => {
   const { palette } = useTheme();
 
   const dataColumns = [
@@ -13,29 +13,33 @@ const ProductsList = ({ data }: { data?: GetProductsResponse[] }) => {
       flex: 1,
     },
     {
-      field: "expense",
-      headerName: "Expense",
-      flex: 0.5,
+      field: "buyer",
+      headerName: "Buyer",
+      flex: 0.67,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 0.33,
       renderCell: (params: GridCellParams) => `$${params.value}`,
     },
     {
-      field: "price",
-      headerName: "Price",
-      flex: 0.5,
-      renderCell: (params: GridCellParams) => `$${params.value}`,
+      field: "productIds",
+      headerName: "Count",
+      flex: 0.33,
+      renderCell: (params: GridCellParams) => (params.value as string[]).length,
     },
   ];
-
   return (
     <>
       <BoxHeader
-        title="List of Products"
+        title="Recent Orders"
         sideText={`${data ? data.length : 0} products`}
       />
       <Box
         mt="0.5rem"
         p="0 0.5rem"
-        height="75%"
+        height="80%"
         sx={{
           "& .MuiDataGrid-root": {
             color: palette.grey[300],
@@ -64,4 +68,4 @@ const ProductsList = ({ data }: { data?: GetProductsResponse[] }) => {
   );
 };
 
-export default ProductsList;
+export default RecentOrders;

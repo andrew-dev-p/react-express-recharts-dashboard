@@ -12,6 +12,9 @@ import OperationalExpensesChart from "@/components/charts/OperationalExpensesCha
 import CampaignsTargetsChart from "@/components/charts/CampaignsTargetsChart";
 import PricesExpensesChart from "@/components/charts/PricesExpensesChart";
 import ProductsList from "@/components/charts/ProductsList";
+import RecentOrders from "@/components/charts/RecentOrders";
+import ExpenseBreakdownCharts from "@/components/charts/ExpenseBreakdownCharts";
+import SummaryData from "@/components/SummaryData";
 
 const gridTemplateLg = `
   "a b c"
@@ -107,9 +110,15 @@ const Dashboard = () => {
       <DashboardBox gridArea="g">
         <ProductsList data={productsData} />
       </DashboardBox>
-      <DashboardBox gridArea="h"></DashboardBox>
-      <DashboardBox gridArea="i"></DashboardBox>
-      <DashboardBox gridArea="j"></DashboardBox>
+      <DashboardBox gridArea="h">
+        <RecentOrders data={transactionsData} />
+      </DashboardBox>
+      <DashboardBox gridArea="i">
+        <ExpenseBreakdownCharts kpiData={kpisData} />
+      </DashboardBox>
+      <DashboardBox gridArea="j">
+        <SummaryData />
+      </DashboardBox>
     </Box>
   );
 };
