@@ -2,8 +2,6 @@
 
 This is an **Interactive Dashboard** built with **Recharts**, **React**, **TypeScript**, and **Express**, designed to help users visualize and analyze data with a focus on predicting future trends using machine learning regression charts.
 
-![Dashboard Screenshot](https://i.ibb.co/mV7BRLrm)
-
 ## Features
 
 - **Data Visualization**: Display interactive charts and graphs to track metrics such as performance, sales, and user engagement.
