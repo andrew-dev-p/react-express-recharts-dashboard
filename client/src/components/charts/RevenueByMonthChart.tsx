@@ -6,7 +6,6 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   Bar,
 } from "recharts";
 import BoxHeader from "./BoxHeader";
